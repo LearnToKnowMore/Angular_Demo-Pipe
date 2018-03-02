@@ -1,0 +1,19 @@
+<div class="container" style="margin-top: 2%;">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-inline">
+                <label for="txtFilter">Search Server by Status:</label>
+                <input id="txtFilter" type="text" [(ngModel)]="filteredStatus" class="form-control" />
+                <button type="button" class="btn btn-default" (click)="onAddnewServer()">Add new dummy server</button>
+            </div>
+            <h3>Status: {{appStatus|async}}</h3>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let server of serversList | filter:filteredStatus:'status' | sort:'name'" [ngClass]="getServerStatus(server)">
+                    <span class="badge"> {{server.status}}</span>
+                    <em>{{server.name}}</em> | {{server.instanceType | uppercase|reverse}} | {{server.startedDate | date:'fullDate'}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
